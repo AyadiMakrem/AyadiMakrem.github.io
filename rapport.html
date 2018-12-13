@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Ayadi Makrem" />
+
+
+<title>projet analyse de donnée</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Makrem Ayadi</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="rapport.html">analyse de donnée</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="cvR.html">My CV</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/AyadiMakrem">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/makrem-ayadi-0226a0132/">
+    <span class="fa fa-linkedin fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://m.facebook.com/ayadi.makrem.37">
+    <span class="fa fa-facebook fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">projet analyse de donnée</h1>
+<h4 class="author"><em>Ayadi Makrem</em></h4>
+<h4 class="date"><em>avril 2017</em></h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>introduction</h1>
+</div>
+<div id="lobjectif" class="section level1">
+<h1>l’objectif:</h1>
+<p>L’objectif de ce travail c’est de faire une étude sur un ensemble de données (un jeu de donnée) obtenu suite à un sondage en ligne. #L’échantillon : Je m’intéresse dans cette étude à tout le publique qui fréquente une bibliothèque quelque soit la catégorie socio professionnelle ou l’âge. Mon échantillon est reparti en 29.4% femme et 70.6% homme. Parmi ces individus il y a 42.4% des licenciés ,42.4% qui ont un niveau master, 6.1% ont le niveau bac, 6.1% ont un niveau secondaire et le reste qui est de 3% sont des docteurs. La majorité des âges de ces individus entre 21 et 23 ans. 15,7% dépassent le 24 ans et 18.8% ont un âge inferieure à 20 ans.</p>
+<pre class="r"><code>base=read.csv(file.choose(),header=TRUE, sep=&quot;;&quot;,dec=&quot;.&quot;)
+F&lt;-factor(c(&quot;1 (pas du tout d&#39;accord)&quot;,&quot;2 (pas d&#39;accord)&quot;,&quot;3 (neutre)&quot;,&quot;4 (d&#39;accord)&quot;,&quot;5 (tout à fait d&#39;accord)&quot;),ordered=T)
+for (i in 7:16){base[[i]]&lt;-as.numeric(factor(base[[i]],levels=F)) }
+F&lt;-factor(c(&quot;1 (pas du tout satisfait)&quot;,&quot;2 ( insatisfait)&quot;,&quot;3 (satisfait)&quot;,&quot;4 (très satisfait)&quot;),ordered=T)
+for (i in 17:24){base[[i]]&lt;-as.numeric(factor(base[[i]],levels=F)) }
+F&lt;-factor(c(&quot;1 (jamais)&quot;,&quot;2 (rarement)&quot;,&quot;3 (toujours)&quot;),ordered=T)
+for (i in 25:32){base[[i]]&lt;-as.numeric(factor(base[[i]],levels=F)) }</code></pre>
+</div>
+<div id="histogramme-de-la-repartition-des-individus-selon-lage" class="section level1">
+<h1>Histogramme de La répartition des individus selon l’age:</h1>
+<pre class="r"><code>hist(base$age,breaks=7,density=5,main=&quot;histogramme des ages&quot;,ylab=&quot;la fréquence&quot;,xlab=&quot;les classes d&#39;age&quot;,col=&quot;red&quot;)</code></pre>
+<p><img src="rapport_files/figure-html/unnamed-chunk-2-1.png" width="672" /> #Les raisons pour lesquelles les gens fréquentes la bibliothéque:</p>
+<pre class="r"><code>tab1=base[,c(7:16)]
+summary(base[,c(7:16)])</code></pre>
+<pre><code>##  Passer.votre.temps.libre    Etudier        Travailler   
+##  Min.   :1.000            Min.   :1.000   Min.   :1.000  
+##  1st Qu.:1.000            1st Qu.:4.000   1st Qu.:2.000  
+##  Median :1.000            Median :5.000   Median :3.000  
+##  Mean   :1.903            Mean   :4.097   Mean   :3.129  
+##  3rd Qu.:3.000            3rd Qu.:5.000   3rd Qu.:4.000  
+##  Max.   :4.000            Max.   :5.000   Max.   :5.000  
+##  Surfer.sur.internet Emprunter.des.livres Rencontrer.des.amis
+##  Min.   :1.000       Min.   :1.000        Min.   :1.000      
+##  1st Qu.:1.000       1st Qu.:2.000        1st Qu.:1.000      
+##  Median :1.000       Median :4.000        Median :2.000      
+##  Mean   :2.032       Mean   :3.323        Mean   :2.194      
+##  3rd Qu.:3.000       3rd Qu.:4.000        3rd Qu.:3.000      
+##  Max.   :5.000       Max.   :5.000        Max.   :5.000      
+##  Particiter.aux.évenements.organisés    Le.calme      Se.discuter  
+##  Min.   :1.000                       Min.   :1.000   Min.   :1.00  
+##  1st Qu.:1.000                       1st Qu.:1.000   1st Qu.:1.00  
+##  Median :2.000                       Median :3.000   Median :1.00  
+##  Mean   :2.194                       Mean   :3.032   Mean   :1.71  
+##  3rd Qu.:3.000                       3rd Qu.:5.000   3rd Qu.:2.00  
+##  Max.   :5.000                       Max.   :5.000   Max.   :4.00  
+##  Lire.des.magazines
+##  Min.   :1.000     
+##  1st Qu.:1.000     
+##  Median :2.000     
+##  Mean   :2.032     
+##  3rd Qu.:3.000     
+##  Max.   :5.000</code></pre>
+<p>• En moyenne Les gens se mettent d’accord sur le fait de fréquenter la bibliothèque pour deux principales raisons soit pour étudier soit pour participer aux événements organisés. #Ce que cherche les gens à trouver dans une bibliothèque:</p>
+<pre class="r"><code>tab2=base[,c(17:24)]
+View(tab2)
+summary(tab2)</code></pre>
+<pre><code>##  Les.horaires.d.ouverture Service.de.prêt
+##  Min.   :1.000            Min.   :1.000  
+##  1st Qu.:2.000            1st Qu.:2.000  
+##  Median :3.000            Median :2.000  
+##  Mean   :2.355            Mean   :2.419  
+##  3rd Qu.:3.000            3rd Qu.:3.000  
+##  Max.   :4.000            Max.   :4.000  
+##  Service.d.information.et.de.recherche Programme.culturel.et.éducatif
+##  Min.   :1.000                         Min.   :1.000                 
+##  1st Qu.:1.000                         1st Qu.:1.000                 
+##  Median :2.000                         Median :1.000                 
+##  Mean   :1.935                         Mean   :1.774                 
+##  3rd Qu.:2.500                         3rd Qu.:2.000                 
+##  Max.   :4.000                         Max.   :4.000                 
+##  Accés.internet  Disponibilité.des.livres
+##  Min.   :1.000   Min.   :1.000           
+##  1st Qu.:1.000   1st Qu.:2.000           
+##  Median :2.000   Median :3.000           
+##  Mean   :2.065   Mean   :2.548           
+##  3rd Qu.:3.000   3rd Qu.:3.000           
+##  Max.   :4.000   Max.   :4.000           
+##  Les.évenements.de.la.bibliothèque  Les.employés  
+##  Min.   :1.000                     Min.   :1.000  
+##  1st Qu.:1.000                     1st Qu.:1.000  
+##  Median :1.000                     Median :2.000  
+##  Mean   :1.645                     Mean   :2.226  
+##  3rd Qu.:2.000                     3rd Qu.:3.000  
+##  Max.   :4.000                     Max.   :4.000</code></pre>
+</div>
+<div id="analyse-en-composantes-principales" class="section level1">
+<h1>Analyse en composantes principales:</h1>
+<p>Le but de cette ACP C’est de réduire le nombre de variables décrivant le rapport des gens à la bibliothèque en fournissant un petit nombre de nouvelles variables (les composantes principales) décrivant ce rapport et de regrouper les individus ayant le même rapport à la bibliothèque et décrire ce rapport.</p>
+<pre class="r"><code>library(FactoMineR)
+res.pca = PCA(tab1,graph=T)</code></pre>
+<p><img src="rapport_files/figure-html/unnamed-chunk-5-1.png" width="672" /><img src="rapport_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<pre class="r"><code>round(res.pca$eig,2) </code></pre>
+<pre><code>##         eigenvalue percentage of variance
+## comp 1        3.78                  37.83
+## comp 2        2.03                  20.32
+## comp 3        0.99                   9.94
+## comp 4        0.95                   9.48
+## comp 5        0.69                   6.92
+## comp 6        0.48                   4.80
+## comp 7        0.45                   4.52
+## comp 8        0.26                   2.61
+## comp 9        0.21                   2.14
+## comp 10       0.14                   1.44
+##         cumulative percentage of variance
+## comp 1                              37.83
+## comp 2                              58.15
+## comp 3                              68.09
+## comp 4                              77.58
+## comp 5                              84.49
+## comp 6                              89.29
+## comp 7                              93.81
+## comp 8                              96.42
+## comp 9                              98.56
+## comp 10                            100.00</code></pre>
+<p>1-Critère de Kaiser : on 2 valeurs propres supérieure à 1, donc on doit retenir 2 axes 2-Le taux d’inertie cumulé des 2 premiers axes (sur 10 variables initiales) étant de 58.15%, on va retenir ces 2 premiers axes.</p>
+<pre class="r"><code>barplot(res.pca$eig[,1], main=&quot;Valeurs propres&quot;, names.arg=paste(&quot;dim&quot;,1:nrow(res.pca$eig)))</code></pre>
+<p><img src="rapport_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>plot(res.pca$eig[,1], main=&quot;Crite`re du coude&quot;,type=&quot;b&quot;, axes=F,xlab=&quot;&quot;,yla=&quot;valeurs propres&quot;) </code></pre>
+<pre><code>## Warning in if (axes) {: la condition a une longueur &gt; 1 et seul le premier
+## élément est utilisé</code></pre>
+<pre><code>## Warning in if (frame.plot) localBox(...): la condition a une longueur &gt; 1
+## et seul le premier élément est utilisé</code></pre>
+<p><img src="rapport_files/figure-html/unnamed-chunk-7-1.png" width="672" /> 3-Le coude étant au niveau du 2ème axe, on retient les 2 premiers axes selon le critère du coude</p>
+<pre class="r"><code>cbind(res.pca$var$coord[,1:2],res.pca$var$cos2[,1:2]) </code></pre>
+<pre><code>##                                         Dim.1       Dim.2       Dim.1
+## Passer.votre.temps.libre            0.7671537 -0.37389039 0.588524782
+## Etudier                             0.0998886  0.84237637 0.009977732
+## Travailler                          0.2098919  0.68200209 0.044054618
+## Surfer.sur.internet                 0.7020682 -0.09746306 0.492899719
+## Emprunter.des.livres                0.6421681  0.49156059 0.412379858
+## Rencontrer.des.amis                 0.6240230  0.02797324 0.389404758
+## Particiter.aux.évenements.organisés 0.8421405 -0.12438745 0.709200589
+## Le.calme                            0.7507187  0.05503265 0.563578510
+## Se.discuter                         0.3736318 -0.65088597 0.139600701
+## Lire.des.magazines                  0.6581594  0.15418067 0.433173819
+##                                            Dim.2
+## Passer.votre.temps.libre            0.1397940268
+## Etudier                             0.7095979500
+## Travailler                          0.4651268512
+## Surfer.sur.internet                 0.0094990475
+## Emprunter.des.livres                0.2416318168
+## Rencontrer.des.amis                 0.0007825022
+## Particiter.aux.évenements.organisés 0.0154722383
+## Le.calme                            0.0030285926
+## Se.discuter                         0.4236525480
+## Lire.des.magazines                  0.0237716797</code></pre>
+<pre class="r"><code>plot(res.pca, choix=&quot;var&quot;,invisible=&quot;quanti.sup&quot;) </code></pre>
+<p><img src="rapport_files/figure-html/unnamed-chunk-9-1.png" width="672" /> a- Le premier axe est fortement corrélé aux items qui exprime le calme, surfer sur internet,rencontrer des amis et lire des magazines qui traduisent le fait de fréquenter la bibliothèque ce n’est autre qu’un moyen de distraction et d’etre un peu loin des études et du travail. b- Le deuxième axe est fortement corrélé aux items étudier et travailler et dans une moindre mesure à l’item emprunter des livres. C’est le caractère sérieux de considérer la bibliothèque comme un lieu de travail seulement .</p>
+<pre class="r"><code>cbind(res.pca$ind$coord[,1:2],res.pca$ind$cos2[,1:2],res.pca$ind$contrib[,1:2]) </code></pre>
+<pre><code>##          Dim.1      Dim.2       Dim.1       Dim.2        Dim.1       Dim.2
+## 1   4.36476274 -1.8252040 0.722716980 0.126377511 16.246012071  5.28763022
+## 2  -1.14581742  2.0532982 0.168427128 0.540860509  1.119583093  6.69179035
+## 3  -1.08231990  0.6549982 0.319857580 0.117145472  0.998933964  0.68095499
+## 4   0.08670022  0.7994329 0.000750182 0.063780851  0.006410116  1.01438386
+## 5  -2.49699701 -0.6015508 0.814738410 0.047285372  5.316937266  0.57435832
+## 6   0.68154240  0.3149415 0.063593389 0.013579568  0.396105838  0.15743381
+## 7   0.57276765  1.3048571 0.056525148 0.293366569  0.279757956  2.70249020
+## 8  -1.35110888 -2.6779959 0.122056632 0.479513119  1.556704512 11.38303476
+## 9   2.68160458 -1.0206161 0.535709262 0.077600491  6.132181014  1.65334331
+## 10  2.66633574 -0.5824366 0.807986039 0.038554184  6.062547559  0.53843785
+## 11 -0.15731059  1.7895282 0.002897918 0.375013783  0.021102864  5.08294400
+## 12 -2.85847374 -0.7860671 0.783969159 0.059285687  6.967771555  0.98074826
+## 13 -0.66015648 -2.1624801 0.032110417 0.344553296  0.371637277  7.42236833
+## 14  2.08089778  0.6811165 0.735781123 0.078829720  3.692555102  0.73634457
+## 15 -1.33391523  1.3505798 0.145710470 0.149373931  1.517336658  2.89520131
+## 16 -1.42495594 -2.5429754 0.159912320 0.509287912  1.731523392 10.26414013
+## 17  2.70173051  0.5641967 0.697166388 0.030402789  6.224572702  0.50524183
+## 18 -0.18497343  0.9322015 0.005793591 0.147146080  0.029177239  1.37929719
+## 19 -1.45850977  0.2625231 0.255131932 0.008265730  1.814028797  0.10938892
+## 20 -1.16581149  1.6451448 0.193268873 0.384869534  1.158996577  4.29582458
+## 21  2.94860123  0.1858195 0.721966724 0.002867264  7.414085249  0.05480509
+## 22  1.48394450  1.2626489 0.349596190 0.253102594  1.877849592  2.53048329
+## 23  2.20284368  1.7745740 0.543616905 0.352788022  4.138022530  4.99834804
+## 24  0.31962546  0.7913659 0.007332977 0.044952329  0.087118066  0.99401488
+## 25 -1.90150800  1.4299982 0.540252493 0.305542356  3.083342738  3.24570624
+## 26 -2.11135317 -0.9042172 0.687274754 0.126053280  3.801432293  1.29772833
+## 27  2.47880487 -0.8471406 0.501957933 0.058626462  5.239745220  1.13906707
+## 28 -1.97813636  1.0903057 0.619287443 0.188137935  3.336859665  1.88683883
+## 29  0.58734674 -3.2936481 0.017334819 0.545110576  0.294180992 17.21839468
+## 30 -1.87426109 -0.6142941 0.513553041 0.055166800  2.995612738  0.59895049
+## 31 -2.67189958 -1.0289046 0.753855621 0.111788751  6.087875365  1.68030625</code></pre>
+<pre class="r"><code>plot(res.pca, choix=&quot;ind&quot;,invisible=&quot;quali&quot;)</code></pre>
+<p><img src="rapport_files/figure-html/unnamed-chunk-11-1.png" width="672" /> #interpretation de la carte des individus: les individus contribuant le plus à la formation de l’axe 1 sont ceux dont les coordonnées sur cet axe sont les plus élevées en valeur absolue, de méme pour le second axe. #1èr axe: Les individus 21,17,10,14,9 et 27 ont à priori un caractère sérieux et considérent que la bibliothèque n’est autre q’un lieu de travail ou d’étude. ceux sont opposés aux individus 12 ,5,30,19 et 31 qui à priori refusent de travailler dans la bibliothèque et ne sont pas d’accord d’étudier la dedans. #2ème axe: Les individus 11,2,7 et 20 ont à priori un caractère très social et qui considèrent la bibliothèque comme un endroit pour se distraire et de faire de nouveaux connaissances.Ceux sont opposés aux individus 29,13,8 et 16 qui refusent totalement l’idée de considerer la bibliothèque comme étant un moyen de plaisir .</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
