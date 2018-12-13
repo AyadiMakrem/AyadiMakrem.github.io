@@ -1,0 +1,35 @@
+name: Makrem Ayadi
+output_dir: '.'
+navbar:
+  title: Makrem Ayadi
+  type: inverse
+  left:
+  - text: Home
+    icon: fa-home
+    href: index.html
+  - text: Projects
+    menu: 
+      - text: analyse de donnée 
+        href: rapport.html
+     
+  
+  
+  - text: My CV
+    href: cvR.html
+  
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/AyadiMakrem
+  - icon: fa-linkedin fa-lg
+    href: https://www.linkedin.com/in/makrem-ayadi-0226a0132/
+  - icon: fa-facebook fa-lg
+    href: https://m.facebook.com/ayadi.makrem.37
+    
+output:
+  html_document:
+    theme: yeti
+    highlight: textmate
+    css: styles.css
+    lib_dir: site_libs
+    self_contained: no
+

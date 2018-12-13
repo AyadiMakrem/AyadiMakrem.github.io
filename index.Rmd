@@ -1,0 +1,30 @@
+---
+---
+
+<script>
+
+</script>
+
+<link rel="stylesheet" href="styles.css" type="text/css">
+
+
+
+<img src="images/capture.png" style="float: right; width:15%; border:1px solid; margin-right: 20px" align="left">
+
+
+  
+# {.tabset .tabset-fade .tabset-pills}
+
+## About me
+
+
+I'm Ayadi Makrem,Student engineer in statistics and analysis of information. For four semesters at the Higher School of Statistics and Information Analysis "ESSAI", I benefited from a training as innovative as solid, which allowed me to familiarize myself with the world information and communication technologies. The knowledge I acquired in statistics, applied mathematics, artificial intelligence, Big data, computer and information systems as well as finance and economics and management sciences helped me to carry out the various professional projects. 
+
+---
+
+
+
+
+
+
+
