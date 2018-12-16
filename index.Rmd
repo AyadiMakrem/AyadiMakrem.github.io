@@ -9,7 +9,7 @@
 
 
 
-<img src="images/Capture.PNG" style="float: right; width:15%; border:1px solid; margin-right: 20px" align="left">
+<img src="images/Capture.PNG" style="float: left; width:15%; border:1px solid; margin-right: 20px" align="left">
 
 
   
